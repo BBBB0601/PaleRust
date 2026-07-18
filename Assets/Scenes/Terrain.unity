@@ -511,12 +511,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1873639038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dea7d2e8b0136544aae1d182eff3d10c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0028f531d3f25b241abe801a50e625f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrain: {fileID: 547649375}
-  noiseScale: 0.005
-  heightMultiplier: 0.219
+  _terrain: {fileID: 547649375}
+  _maxTerrainHeight: 150
+  _noiseData:
+    _width: 2048
+    _height: 2048
+    _scale: 800
+    _octave: 4
+    _lacunarity: 2.5
+    _persistence: 0.25
+    _seed: 601
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
