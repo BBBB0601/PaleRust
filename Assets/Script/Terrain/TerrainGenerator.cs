@@ -47,10 +47,37 @@ public class TerrainGenerator : MonoBehaviour
 
         terrainData.heightmapResolution = mapWidth + 1;
 
+        float[,] smoothedDune = new float[mapHeight, mapWidth];
+        int smoothRadius = 4;
+
+        for (int y = 0; y < mapHeight; ++y)
+        {
+            for (int x = 0; x < mapWidth; ++x)
+            {
+                float sum = 0f;
+                int count = 0;
+
+                for (int ky = -smoothRadius; ky <= smoothRadius; ++ky)
+                {
+                    for (int kx = -smoothRadius; kx <= smoothRadius; ++kx)
+                    {
+                        // 지형 경계를 벗어나지 않도록 함
+                        int py = Mathf.Clamp(y + ky, 0, mapHeight - 1);
+                        int px = Mathf.Clamp(x + kx, 0, mapWidth - 1);
+
+                        sum += sandDune[py, px];
+                        count++;
+                    }
+                }
+                // 주변 영역의 평균값 대입
+                smoothedDune[y, x] = sum / count;
+            }
+        }
+
         Vector3 currSize = terrainData.size;
         terrainData.size = new Vector3(currSize.x, _maxTerrainHeight, currSize.z);
 
-        terrainData.SetHeights(0, 0, sandDune);
+        terrainData.SetHeights(0, 0, smoothedDune);
     }
 
     private void OnApplicationQuit()
