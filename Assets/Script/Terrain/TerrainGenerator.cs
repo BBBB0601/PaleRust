@@ -80,13 +80,13 @@ public class TerrainGenerator : MonoBehaviour
         terrainData.SetHeights(0, 0, smoothedDune);
     }
 
-    private void OnApplicationQuit()
-    {
-        if (_terrain != null)
-        {
-            TerrainData terrainData = _terrain.terrainData;
-            int res = terrainData.heightmapResolution;
-            terrainData.SetHeights(0, 0, new float[res, res]);
-        }
-    }
+    // private void OnApplicationQuit()
+    // {
+    //     if (_terrain != null)
+    //     {
+    //         TerrainData terrainData = _terrain.terrainData;
+    //         int res = terrainData.heightmapResolution;
+    //         terrainData.SetHeights(0, 0, new float[res, res]);
+    //     }
+    // }
 }

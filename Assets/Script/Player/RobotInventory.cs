@@ -8,9 +8,12 @@ public class RobotInventory : MonoBehaviour
     /// <summary>
     /// 인벤토리는 현재 어떤 광물을 얼마나 많이 갖고 있는지 기록해야 함
     /// </summary>
-    private Dictionary<MineralData, int> _inventory;
+    private Dictionary<MineralData, int> _inventory = new Dictionary<MineralData, int>();
+    public Dictionary<MineralData, int> Inventory => _inventory;
 
     private int _currentWeight = 0;
+
+    public void ResetInventory() => _inventory.Clear();
 
     /// <summary>
     /// 현재 인벤토리가 갖고 있는 자원의 총량 반환
