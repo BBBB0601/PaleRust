@@ -4,6 +4,7 @@ using UnityEngine;
 public class RobotInventory : MonoBehaviour
 {
     [SerializeField, Tooltip("최대 수용력, 단위 g")] private int _maxWeight;
+    [SerializeField]    private int _currentWeight = 0;
 
     /// <summary>
     /// 인벤토리는 현재 어떤 광물을 얼마나 많이 갖고 있는지 기록해야 함
@@ -11,19 +12,11 @@ public class RobotInventory : MonoBehaviour
     private Dictionary<MineralData, int> _inventory = new Dictionary<MineralData, int>();
     public Dictionary<MineralData, int> Inventory => _inventory;
 
-    private int _currentWeight = 0;
 
-    public void ResetInventory() => _inventory.Clear();
-
-    /// <summary>
-    /// 현재 인벤토리가 갖고 있는 자원의 총량 반환
-    /// </summary>
-    /// <returns>자원의 총량 반환, 단위 g</returns>
-    private int GetTotalWeight()
+    public void ResetInventory() 
     {
-        int totalWeight = 0;
-        foreach(var (key, val) in _inventory)   totalWeight += val;
-        return totalWeight;
+        _inventory.Clear();
+        _currentWeight = 0;
     }
 
     /// <summary>
@@ -32,12 +25,23 @@ public class RobotInventory : MonoBehaviour
     /// <param name="md">추가할 미네랄 데이터</param>
     /// <param name="weight">추가할 미네랄 데이터의 그램 수</param>
     /// <returns></returns>
-    private bool GatherMineral(MineralData md, int weight)
+    public bool GatherMineral(MineralData md, int weight)
     {
         if(_currentWeight + weight > _maxWeight)    return false;
-        else {
-            _inventory[md] += weight;
-            return true;
+        
+        // cw = currentWeight = 현재 딕셔너리[md]의 무게
+        // map과 다르게 md가 key로써 존재하는지 1차 확인 필요
+        if(_inventory.TryGetValue(md, out int cw))
+        {
+            _inventory[md] = cw + weight;
         }
+        else
+        {
+            _inventory[md] = weight;
+        }
+
+        _currentWeight += weight;
+
+        return true;
     }
 }

@@ -34,8 +34,17 @@ public class ShelterZone : MonoBehaviour
         var robotInventory = other.GetComponent<RobotInventory>();
 
         if(robotInventory != null) {
-            foreach(var (val, key) in robotInventory.Inventory)
-                _shelterStorage[val] += key;
+            foreach(var (md, weight) in robotInventory.Inventory)
+            {
+                if(_shelterStorage.TryGetValue(md, out int cw))
+                {
+                    _shelterStorage[md] = cw + weight;
+                }
+                else
+                {
+                    _shelterStorage[md] = weight;
+                }
+            }
             robotInventory.ResetInventory();
         }
     }
