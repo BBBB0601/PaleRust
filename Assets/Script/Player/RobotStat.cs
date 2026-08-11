@@ -20,4 +20,6 @@ public class RobotStat : MonoBehaviour
 
 
     public void TakeDamage(float amount) => _currentHp = Mathf.Clamp(_currentHp - amount, 0, _maxHp);
+
+    public void GetRepair(float amount) => _currentHp = Mathf.Clamp(_currentHp + amount, 0, _maxHp);
 }

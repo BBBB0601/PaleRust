@@ -18,12 +18,12 @@ public class Respirator : MonoBehaviour
         _currentInterval = 0f;
     }
 
-    public (MineralData mineral, int weight) GatherRandomMineral()
+    public (int mineral, int weight) GatherRandomMineral()
     {
         int mineral = Random.Range(0, _mineralDatas.Length);
         int weight = Random.Range(0, 18) + 10;      // [10 ~ 100]g 사이만큼 얻음
 
-        return (_mineralDatas[mineral], weight);
+        return (mineral, weight);
     }
 
     private void OnEnable()
@@ -55,8 +55,8 @@ public class Respirator : MonoBehaviour
             }
             else
             {
-                Debug.Log("수집한 자원: " + mineral.MineralName.ToString()
-                        + "\n 수집량(g): " + mineral.MineralWeight.ToString());
+                // Debug.Log("수집한 자원: " + mineral.MineralName.ToString()
+                //         + "\n 수집량(g): " + mineral.MineralWeight.ToString());
             }
 
             // 수집 주기 초기화, _currentInterval이 0이 될 때까지 수집 불가

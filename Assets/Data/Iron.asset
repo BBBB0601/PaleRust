@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42c68227caff424cbf0cadb63f02117, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: 
+  _id: 2
   _name: "\uCCA0"
   _weight: 100

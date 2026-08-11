@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42c68227caff424cbf0cadb63f02117, type: 3}
   m_Name: Copper
   m_EditorClassIdentifier: 
+  _id: 1
   _name: "\uAD6C\uB9AC"
   _weight: 100

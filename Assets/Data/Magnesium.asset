@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42c68227caff424cbf0cadb63f02117, type: 3}
   m_Name: Magnesium
   m_EditorClassIdentifier: 
+  _id: 3
   _name: "\uB9C8\uADF8\uB124\uC298"
   _weight: 120

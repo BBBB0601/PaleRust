@@ -9,8 +9,8 @@ public class RobotInventory : MonoBehaviour
     /// <summary>
     /// 인벤토리는 현재 어떤 광물을 얼마나 많이 갖고 있는지 기록해야 함
     /// </summary>
-    private Dictionary<MineralData, int> _inventory = new Dictionary<MineralData, int>();
-    public Dictionary<MineralData, int> Inventory => _inventory;
+    private Dictionary<int, int> _inventory = new Dictionary<int, int>();
+    public Dictionary<int, int> Inventory => _inventory;
 
 
     public void ResetInventory() 
@@ -25,19 +25,19 @@ public class RobotInventory : MonoBehaviour
     /// <param name="md">추가할 미네랄 데이터</param>
     /// <param name="weight">추가할 미네랄 데이터의 그램 수</param>
     /// <returns></returns>
-    public bool GatherMineral(MineralData md, int weight)
+    public bool GatherMineral(int mdID, int weight)
     {
         if(_currentWeight + weight > _maxWeight)    return false;
         
-        // cw = currentWeight = 현재 딕셔너리[md]의 무게
-        // map과 다르게 md가 key로써 존재하는지 1차 확인 필요
-        if(_inventory.TryGetValue(md, out int cw))
+        // cw = currentWeight = 현재 딕셔너리[mdID]의 무게
+        // map과 다르게 mdID가 key로써 존재하는지 1차 확인 필요
+        if(_inventory.TryGetValue(mdID, out int cw))
         {
-            _inventory[md] = cw + weight;
+            _inventory[mdID] = cw + weight;
         }
         else
         {
-            _inventory[md] = weight;
+            _inventory[mdID] = weight;
         }
 
         _currentWeight += weight;

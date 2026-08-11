@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42c68227caff424cbf0cadb63f02117, type: 3}
   m_Name: Sand
   m_EditorClassIdentifier: 
+  _id: 4
   _name: "\uBAA8\uB798"
   _weight: 1
